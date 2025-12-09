@@ -8,11 +8,13 @@ import 'modules/home/home_page.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put(ThemeController()); // inject controller
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final ThemeController themeController = Get.put(ThemeController());
+  final ThemeController themeController = Get.find();
 
    MyApp({super.key});
 
