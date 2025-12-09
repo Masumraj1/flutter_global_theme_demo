@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../config/theme/app_colors/app_colors.dart';
+import '../../controller/theme_controller.dart';
 import '../../routes/app_pages.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+   HomePage({super.key});
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Screen"),
-        backgroundColor: AppColors.primary,
+        title: const Text("Light / Dark Mode"),
+        actions: [
+          IconButton(
+            icon: Obx(() => Icon(
+              themeController.isDarkMode.value
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+            )),
+            onPressed: () => themeController.toggleTheme(),
+          ),
+        ],
       ),
 
       body: Center(
